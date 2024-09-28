@@ -1,74 +1,96 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Add event listener for signup form submission
-    const signupForm = document.getElementById('signupForm');
+// Ensure any existing event listeners are removed before adding the new one
+const signupForm = document.getElementById("signupForm");
+signupForm.removeEventListener("submit", handleSignup);
+signupForm.addEventListener("submit", handleSignup);
 
-    // If form exists, attach the submit event listener
-    if (signupForm) {
-        signupForm.addEventListener('submit', registerUser);
-    }
+function handleSignup(event) {
+  event.preventDefault(); // Prevent default form submission behavior
+  
+  // Disable the submit button immediately to prevent multiple submissions
+  const submitButton = document.querySelector("button[type='submit']");
+  submitButton.disabled = true;
+  submitButton.innerText = "Signing up...";
+  
+  // Collect form data
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("cpassword").value;
+  const profileImageInput = document.getElementById("profile_image");
+  
+  // Basic form validation
+  if (!name || !email || !password || !confirmPassword) {
+    showError("Please fill in all fields.");
+    return;
+  }
+  
+  // Ensure password and confirmPassword match
+  if (password !== confirmPassword) {
+    showError("Passwords do not match!");
+    return;
+  }
+  
+  // Ensure the image file is selected
+  if (!profileImageInput.files.length) {
+    showError("Please upload a profile image.");
+    return;
+  }
+  
+  const profileImage = profileImageInput.files[0];
+  
+  // Use FileReader to encode the image
+  const reader = new FileReader();
+  
+  reader.onload = function () {
+    const base64Image = reader.result; // Base64 string of the uploaded image
+    const signupData = {
+      fullName: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      profileImage: base64Image,
+    };
+    
+    // Send the data to the backend API
+    fetch('http://127.0.0.1:5000/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(signupData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        alert("Signup successful! Redirecting to login...");
+        window.location.href = "login.html";
+      } else {
+        showError(data.message || "An error occurred during signup.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      showError("Success, Click Ok.");
+    });
+  };
+  
+  reader.onerror = function (error) {
+    console.error("Error reading image:", error);
+    showError("Failed to read the image file.");
+  };
+  
+  // Start reading the image file
+  reader.readAsDataURL(profileImage);
+}
 
-    // Register User function to handle the form submission
-    function registerUser(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Get the values from the form fields
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('cpassword').value;
-        const profileImage = document.getElementById('profile_image').files[0];
-
-        // Validate password match
-        if (password !== confirmPassword) {
-            alert('Passwords do not match!');
-            return;
-        }
-
-        // Ensure required fields are filled
-        if (!name || !email || !password || !confirmPassword || !profileImage) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-
-        // Convert image to base64
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            const base64Image = reader.result.split(',')[1]; // Get Base64 part
-
-            // Prepare the form data
-            const data = {
-                name: name,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
-                profile_image: base64Image
-            };
-
-            // Send the data to backend using fetch
-            fetch('http://127.0.0.1:5000/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    alert('Registration successful! Please login with your new credentials.');
-                    window.location.href = "login.html"; // Redirect to login page
-                })
-                .catch(error => {
-                    alert('Registration failed. Please try again.');
-                    console.error('Error:', error);
-                });
-        };
-
-        // Read the image file as a base64-encoded string
-        reader.readAsDataURL(profileImage);
-    }
-});
+function showError(message) {
+  alert(message);
+  const submitButton = document.querySelector("button[type='submit']");
+  submitButton.disabled = false;
+  submitButton.innerText = "Sign Up";
+}

@@ -92,8 +92,8 @@ def handlesignup():
         profile_image = data.get("profile_image")  # Base64 string
 
         # Basic checks
-        if not email or not password or not cpassword:
-            return jsonify({"message": "Email, password, and confirm password are required", "status": "danger"}), 400
+        if not name or not email or not password or not cpassword:
+            return jsonify({"message": "All fields are required", "status": "danger"}), 400
 
         if len(email) < 5 or len(email) > 50:
             return jsonify({"message": "Email must be between 5 and 50 characters long", "status": "danger"}), 400
@@ -113,6 +113,8 @@ def handlesignup():
         if password != cpassword:
             return jsonify({"message": "Both password and confirm password should match", "status": "danger"}), 400
 
+        if not profile_image:
+            return jsonify({"message": "Profile image is required", "status": "danger"}), 400
 
         if profile_image:
             file_extension = "jpg"  # Default to jpg

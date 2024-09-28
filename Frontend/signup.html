@@ -1,19 +1,15 @@
-<!-- signup.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Signup - KYC Verification Platform</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" type="image/x-icon" href="assets/images/logo.png" >
-  <!-- Font Awesome for Icons -->
+  <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="logo">
@@ -21,51 +17,43 @@
         <span>VYC</span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-      </label>
-      <ul class="nav-links" id="navLinks">
-        <!-- Links populated by JavaScript -->
-      </ul>
+      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+      <ul class="nav-links" id="navLinks"></ul>
     </div>
   </nav>
 
-
-  <!-- Signup Form -->
   <section class="signup">
     <div class="container">
-      <img src="assets/videos/signup.gif" alt="Animated Icon" class="animated-icon">
-      <h2>Create Your Account</h2>
-      <form id="signupForm">
-        <div class="form-group">
-          <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
-          <input type="text" id="name" name="fullName" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group">
-          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-          <input type="email" id="email" name="email" placeholder="name@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="password"><i class="fas fa-lock"></i> Password</label>
-          <input type="password" id="password" name="password" placeholder="Create a password" required>
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
-          <input type="password" id="cpassword" name="confirmPassword" placeholder="Confirm your password" required>
-        </div>
-        <div class="form-group">
-          <label for="idDocument"><i class="fas fa-id-card"></i> Upload Your Photo</label>
-          <input type="file" id="profile_image" name="idDocument" accept="image/*" required>
-        </div>
-      
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-      </form>
-      <p class="redirect">Already have an account? <a href="login.html">Login</a>.</p>
+        <img src="assets/videos/signup.gif" alt="Animated Icon" class="animated-icon">
+        <h2>Create Your Account</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="cpassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                <input type="password" id="cpassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div class="form-group">
+                <label for="profile_image"><i class="fas fa-id-card"></i> Upload Your Photo</label>
+                <input type="file" id="profile_image" name="profile_image" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <p class="redirect">Already have an account? <a href="login.html">Login</a>.</p>
     </div>
-  </section>
- 
+</section>
 
-  <!-- Footer -->
+
   <footer class="footer">
     <div class="container">
       <p>&copy; 2024 VYC. All Rights Reserved.</p>
@@ -78,8 +66,8 @@
   </footer>
 
   <!-- JavaScript -->
-  <script src="js/scripts.js"></script>
   <script src="js/signup.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/login.js"></script>
 </body>
-
 </html>
