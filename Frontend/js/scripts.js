@@ -137,10 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const idDocument = document.getElementById('idDocument');
-      const secondImage = document.getElementById('secondImage');
+    
 
       if (!idDocument || !secondImage || !idDocument.files[0] || !secondImage.files[0]) {
-        alert('Please upload both ID Document and Second Image.');
+        alert('Please upload ID Document');
         return;
       }
 
