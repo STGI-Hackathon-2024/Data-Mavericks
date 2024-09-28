@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('navLinks');
 
-
     function setCookie(name, value, days) {
         let expires = "";
         if (days) {
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
-    
     function getCookie(name) {
         const nameEQ = name + "=";
         const cookiesArray = document.cookie.split(';');
@@ -23,12 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-
     function deleteCookie(name) {
         document.cookie = name + "=; Max-Age=-99999999;";
     }
 
- 
     const isLoggedIn = getCookie('isLoggedIn');
 
     if (isLoggedIn) {
@@ -38,21 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <li><a href="#" id="logoutLink">Logout</a></li>
         `;
 
-       
         document.getElementById('logoutLink').addEventListener('click', (e) => {
             e.preventDefault();
-            deleteCookie('isLoggedIn'); 
-            window.location.href = 'index.html'; 
+            deleteCookie('isLoggedIn');
+            window.location.href = 'index.html';
         });
     } else {
-      
         navLinks.innerHTML = `
             <li><a href="index.html">Home</a></li>
             <li><a href="signup.html">Sign Up</a></li>
             <li><a href="login.html">Login</a></li>
         `;
     }
-
 
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
@@ -63,40 +56,52 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const cpassword = document.getElementById('cpassword').value;
-            const profileImage = document.getElementById('profile_image').files[0];
+            const profile_image = document.getElementById('profile_image').files[0];
 
             if (password !== cpassword) {
                 alert('Passwords do not match!');
                 return;
             }
 
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('password', password);
-            formData.append('cpassword', cpassword);
-            formData.append('profile_image', profileImage);
+            // Convert the image file to a Base64 string
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const base64Image = reader.result.split(',')[1]; // Get Base64 part of the string
 
-            try {
-                const response = await fetch('http://192.168.120.120:5000/api/signup', {
-                    method: 'POST',
-                    body: formData,
-                });
+                const data = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    cpassword: cpassword,
+                    profile_image: base64Image // Use the Base64 string here
+                };
 
-                const result = await response.json();
+                try {
+                    const response = await fetch('http://127.0.0.1:5000/api/signup', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the content type to JSON
+                        },
+                        body: JSON.stringify(data), // Convert the object to a JSON string
+                    });
 
-                if (response.ok) {
-                    alert('Signup successful!');
-            
-                    setCookie('isLoggedIn', true, 1); 
-                    window.location.href = 'login.html'; 
-                } else {
-                    alert(`Error: ${result.error || 'Signup failed!'}`);
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Signup successful!');
+                        setCookie('isLoggedIn', true, 1);
+                        window.location.href = 'login.html';
+                    } else {
+                        alert(`Error: ${result.message || 'Signup failed!'}`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again later.');
-            }
+            };
+
+            // Read the file as Data URL (Base64)
+            reader.readAsDataURL(profile_image);
         });
     }
 });

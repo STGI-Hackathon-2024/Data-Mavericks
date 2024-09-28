@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 import configparser
 import logging
 from functools import wraps
+import base64
 
 
 app = Flask(__name__)
@@ -76,41 +77,20 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 '''*********************Routes***********************'''
-# @app.route("/")
-# def home():
-#     if ("user" in session):
-#         return redirect("/welcome")
-#     else:
-#         return render_template("index.html")
-
-
-# @app.route("/login")
-# def login():
-#     if ("user" in session):
-#         return redirect("/welcome")
-#     else:
-#         return render_template("login.html")
-
-
-# @app.route("/welcome")
-# def welcome():
-#     if ("user" in session):
-#         return render_template("welcome.html")
-#     else:
-#         return redirect("/login")
 
 @app.route("/api/signup", methods=["POST"])
 def handlesignup():
     try:
-        if not request.is_json:
+        if not request.json:
             return jsonify({"message": "Request must be JSON", "status": "danger"}), 400
-        
+
         data = request.json
         name = data.get("name")
         email = data.get("email")
         password = data.get("password")
         cpassword = data.get("cpassword")
-        profile_image = request.files.get("profile_image")  
+        profile_image = data.get("profile_image")  # Base64 string
+
         # Basic checks
         if not email or not password or not cpassword:
             return jsonify({"message": "Email, password, and confirm password are required", "status": "danger"}), 400
@@ -132,21 +112,23 @@ def handlesignup():
 
         if password != cpassword:
             return jsonify({"message": "Both password and confirm password should match", "status": "danger"}), 400
-        
-        if not profile_image and not allowed_file(profile_image.filename):
-            return jsonify({"message": "Invalid image file type. Allowed types: png, jpg, jpeg", "status": "danger"}), 400
 
-        # Secure the filename and save the image
-        filename = secure_filename(profile_image.filename)
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        profile_image.save(image_path)
+
+        if profile_image:
+            # Get the file extension from the data URL
+            file_extension = "jpg"  # Default to jpg
+            filename = f"{secure_filename(name)}.{file_extension}"  # Create a unique filename
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Decode the image and save it
+            with open(image_path, "wb") as fh:
+                fh.write(base64.b64decode(profile_image))
 
         # Hashing the password
         hashed_pass = generate_password_hash(password)
         
         # Insert user into the database
-        cursor.execute("INSERT INTO users (email,name,password, profile_image, timestamp) VALUES (%s, %s, %s, %s, %s) ",
-                       (email,name,hashed_pass,  filename, datetime.now()))
+        cursor.execute("INSERT INTO users (email, name, password, profile_image, timestamp) VALUES (%s, %s, %s, %s, %s) ",
+                       (email, name, hashed_pass, filename, datetime.utcnow()))
         connection.commit()
 
         # JWT token
