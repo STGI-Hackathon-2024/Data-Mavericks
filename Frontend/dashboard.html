@@ -1,0 +1,92 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - KYC Verification Platform</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="KYC Platform Logo">
+        <span>VYC</span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="signup.html">Signup</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <section class="dashboard">
+    <div class="container">
+      <h2>Welcome, [User Name]</h2>
+      <div class="dashboard-grid">
+        <!-- Step 1: Capture Live Image -->
+        <div class="dashboard-card">
+          <h3><i class="fas fa-camera-retro"></i> Capture Live Image</h3>
+          <video id="liveVideo" autoplay playsinline></video>
+          <button id="captureButton" class="btn btn-primary">Capture Image</button>
+          <canvas id="capturedCanvas"></canvas>
+        </div>
+        <!-- Step 2: Upload Documents -->
+        <div class="dashboard-card">
+          <h3><i class="fas fa-upload"></i> Upload Documents</h3>
+          <form id="uploadForm">
+            <div class="form-group">
+              <label for="idDocument"><i class="fas fa-id-card"></i> Upload ID Document</label>
+              <input type="file" id="idDocument" name="idDocument" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="secondImage"><i class="fas fa-image"></i> Upload Second Image</label>
+              <input type="file" id="secondImage" name="secondImage" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Upload Images</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Verification Results -->
+      <div class="verification-results">
+        <h3>Verification Results</h3>
+        <div id="verificationResults" class="results-box">
+          <p>No verification performed yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 VYC. All Rights Reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/scripts.js"></script>
+  <script src="js/livemodel.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>
