@@ -1,112 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.getElementById('navLinks');
-
-    function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convert days to milliseconds
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const cookiesArray = document.cookie.split(';');
-        for (let i = 0; i < cookiesArray.length; i++) {
-            let cookie = cookiesArray[i].trim();
-            if (cookie.indexOf(nameEQ) == 0) return cookie.substring(nameEQ.length, cookie.length);
-        }
-        return null;
-    }
-
-    function deleteCookie(name) {
-        document.cookie = name + "=; Max-Age=-99999999;";
-    }
-
-    const isLoggedIn = getCookie('isLoggedIn');
-
-    if (isLoggedIn) {
-        navLinks.innerHTML = `
-            <li><a href="index.html">Home</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="#" id="logoutLink">Logout</a></li>
-        `;
-
-        document.getElementById('logoutLink').addEventListener('click', (e) => {
-            e.preventDefault();
-            deleteCookie('isLoggedIn');
-            window.location.href = 'index.html';
-        });
-    } else {
-        navLinks.innerHTML = `
-            <li><a href="index.html">Home</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
-            <li><a href="login.html">Login</a></li>
-        `;
-    }
-
+    // Add event listener for signup form submission
     const signupForm = document.getElementById('signupForm');
+
+    // If form exists, attach the submit event listener
     if (signupForm) {
-        signupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        signupForm.addEventListener('submit', registerUser);
+    }
 
-            // Ensure all form elements exist before accessing them
-            const name = document.getElementById('name')?.value || null;
-            const email = document.getElementById('email')?.value || null;
-            const password = document.getElementById('password')?.value || null;
-            const cpassword = document.getElementById('cpassword')?.value || null;
-            const profile_image = document.getElementById('profile_image')?.files[0] || null;
+    // Register User function to handle the form submission
+    function registerUser(event) {
+        event.preventDefault(); // Prevent default form submission
 
-            if (!name || !email || !password || !cpassword || !profile_image) {
-                alert('Please fill in all required fields.');
-                return;
-            }
+        // Get the values from the form fields
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('cpassword').value;
+        const profileImage = document.getElementById('profile_image').files[0];
 
-            if (password !== cpassword) {
-                alert('Passwords do not match!');
-                return;
-            }
+        // Validate password match
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
 
-            const reader = new FileReader();
-            reader.onloadend = async () => {
-                const base64Image = reader.result.split(',')[1]; 
+        // Ensure required fields are filled
+        if (!name || !email || !password || !confirmPassword || !profileImage) {
+            alert('Please fill in all required fields.');
+            return;
+        }
 
-                const data = {
-                    name: name,
-                    email: email,
-                    password: password,
-                    cpassword: cpassword,
-                    profile_image: base64Image
-                };
+        // Convert image to base64
+        const reader = new FileReader();
+        reader.onloadend = function () {
+            const base64Image = reader.result.split(',')[1]; // Get Base64 part
 
-                try {
-                    const response = await fetch('http://127.0.0.1:5000/api/signup', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data),
-                    });
-
-                    const result = await response.json();
-                    if (response.ok) {
-                        alert('Signup successful!');
-                        setCookie('isLoggedIn', true, 1);
-                        window.location.href = 'login.html';
-                    } else {
-                        alert(`Error: ${result.message || 'Signup failed!'}`);
-                    }
-
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('An error occurred. Please try again later.');
-                }
+            // Prepare the form data
+            const data = {
+                name: name,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                profile_image: base64Image
             };
 
-            // Read the file as Data URL (Base64)
-            reader.readAsDataURL(profile_image);
-        });
+            // Send the data to backend using fetch
+            fetch('http://127.0.0.1:5000/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Registration successful! Please login with your new credentials.');
+                    window.location.href = "login.html"; // Redirect to login page
+                })
+                .catch(error => {
+                    alert('Registration failed. Please try again.');
+                    console.error('Error:', error);
+                });
+        };
+
+        // Read the image file as a base64-encoded string
+        reader.readAsDataURL(profileImage);
     }
 });
