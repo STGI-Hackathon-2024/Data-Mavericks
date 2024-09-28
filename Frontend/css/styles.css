@@ -1,0 +1,756 @@
+/* css/styles.css */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto ;             /* Center horizontally */
+  overflow: hidden;
+
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between; /* Space between logo and menu */
+  align-items: center; /* Vertically align items */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center; /* Keep the logo vertically aligned */
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar .logo img {
+  margin-right: 0.5rem;
+  width: 40px;
+  height: 40px;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+}
+
+.navbar .nav-links li {
+  margin-left: 1.5rem;
+}
+
+.navbar .nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffdd57;
+  transition: width 0.3s;
+}
+
+.navbar .nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* Aligns the menu icon correctly with the logo */
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: #fff;
+  height: 2px;
+  width: 25px;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  top: -8px;
+}
+
+.nav-toggle-label span::after {
+  top: 8px;
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem; /* Reduce padding on smaller screens for better spacing */
+  }
+
+  /* Flex properties to align logo and menu icon in one row */
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  .navbar .nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    height: 100vh;
+    width: 200px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 2rem;
+    transition: right 0.3s ease-in-out;
+  }
+
+  .navbar .nav-links li {
+    margin: 1.5rem 0;
+  }
+
+  .nav-toggle-label {
+    display: block;
+    position: absolute;
+    top: 2rem; /* Vertically align the menu icon */
+    right: 1.5rem;
+  }
+
+  .nav-toggle:checked + .nav-toggle-label span {
+    background: transparent;
+  }
+
+  .nav-toggle:checked + .nav-toggle-label span::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .nav-toggle:checked + .nav-toggle-label span::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  .nav-toggle:checked ~ .nav-links {
+    right: 0;
+  }
+}
+
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(rgba(30, 60, 114, 0.6), rgba(42, 82, 152, 0.6)), url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 60, 114, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: slideUp 1s ease-out;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Features Section */
+.features {
+  padding: 4rem 0;
+  background-color: #fff;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.features h2::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background-color: #1e3c72;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: #f4f6f9;
+  padding: 2rem;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card i {
+  color: #1e3c72;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Call to Action */
+.cta {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  padding: 4rem 0;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta .btn:hover {
+  background-color: #ffdd57;
+  color: #1e3c72;
+  transform: scale(1.05);
+}
+
+/* Signup & Login Sections */
+.signup, .login {
+  padding: 4rem 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.signup h2, .login h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #1e3c72;
+  position: relative;
+}
+
+.signup h2::after, .login h2::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background-color: #ffdd57;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+}
+
+.signup form, .login form {
+  width: 100%;
+  max-width: 500px;
+  background-color: #f4f6f9;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  animation: slideUp 1s ease-out;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #1e3c72;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="file"]:focus {
+  border-color: #1e3c72;
+  outline: none;
+}
+
+
+.btn .btn-primary {
+  padding: 0.75rem 2rem; /* Adjusted padding for buttons */
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0 10px; /* Added margin between the buttons */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary {
+  background-color: #1e3c72;
+  color: #fff;
+  
+  
+}
+
+
+
+/* Signup & Login Sections */
+.signup, .login {
+  padding: 4rem 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup h2, .login h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #1e3c72;
+  position: relative;
+}
+.signup .container { background-color: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; } .login .container { background-color: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; }
+.login .container {
+ background-color: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; } .login .container { background-color: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; }
+
+
+.signup h2::after, .login h2::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background-color: #ffdd57;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+}
+
+.signup form, .login form {
+  width: 100%;
+  max-width: 500px;
+  background-color: #f4f6f9;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  animation: slideUp 1s ease-out;
+}
+
+/* Apply the same button styles to the signup button */
+.signup .btn-primary {
+  padding: 0.75rem 2rem; /* Same padding as the hero section buttons */
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: #1e3c72; /* Primary button background color */
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.login .btn-primary {
+  padding: 0.75rem 2rem; /* Same padding as the hero section buttons */
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: #1e3c72; /* Primary button background color */
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.signup .btn-primary:hover {
+  background-color: #ffdd57; /* Hover effect */
+  color: #1e3c72;
+  transform: scale(1.05); /* Slightly increase the size on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Inputs */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #1e3c72;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="file"]:focus {
+  border-color: #1e3c72;
+  outline: none;
+}
+
+/* Redirect Links */
+.redirect {
+  text-align: center;
+  margin-top: 1rem;
+  color: #555;
+}
+
+.redirect a {
+  color: #1e3c72;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+/* Dashboard Section */
+.dashboard {
+  padding: 4rem 0;
+  background-color: #f4f6f9;
+}
+
+.dashboard h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #1e3c72;
+  position: relative;
+}
+
+.dashboard h2::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background-color: #ffdd57;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card h3 {
+  margin-bottom: 1rem;
+  color: #1e3c72;
+}
+
+.dashboard-card i {
+  color: #ffdd57;
+  margin-bottom: 1rem;
+}
+
+#liveVideo, #capturedCanvas {
+  width: 100%;
+  border: 2px solid #1e3c72;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+#capturedCanvas {
+  display: none;
+}
+
+.results-box {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 150px;
+  transition: all 0.3s ease;
+}
+
+.results-box p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #1e3c72;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.footer .social-icons a {
+  color: #fff;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  color: #ffdd57;
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+}
+
+/* Forms */
+form {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .features h2, .dashboard h2 {
+    font-size: 1.75rem;
+  }
+}
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(rgba(30, 60, 114, 0.6), rgba(42, 82, 152, 0.6)), url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 2s ease-in-out;
+  padding: 2rem; /* Ensure proper spacing */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: slideUp 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the buttons and content */
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem; /* Add space between the buttons */
+}
+
+.hero-buttons .btn {
+  padding: 1rem 2.5rem; /* Adjusted padding for buttons */
+  font-size: 1.2rem; /* Adjust font size for better visibility */
+  border-radius: 50px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-buttons .btn-primary {
+  background-color: #1e3c72;
+  color: #fff;
+}
+
+.hero-buttons .btn-secondary {
+  background-color: #ffdd57;
+  color: #1e3c72;
+}
+
+.hero-buttons .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons .btn {
+    padding: 0.5rem 1.5rem; /* Adjust padding for smaller screens */
+    font-size: 1rem; /* Reduce font size for smaller screens */
+  }
+}
+
