@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VYC Verification Platform</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/logo.png" >
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,16 +30,17 @@
     </div>
   </nav>
 
-
-  <!-- Hero Section -->
+  <!-- Hero Section with Video Background -->
   <section class="hero">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/videos/kyc.mp4" type="video/mp4">
+    </video>
     <div class="container hero-content">
-      <h1>Welcome to VYC Verification Platform</h1>
+      <h1>Welcome to KYC Verification Platform</h1>
       <p>Ensure your identity with our advanced verification system.</p>
       <div class="hero-buttons">
         <a href="signup.html" class="btn btn-primary">Get Started</a>
         <a href="login.html" class="btn btn-secondary">Login</a>
-        
       </div>
     </div>
     <div class="overlay"></div>
@@ -68,6 +70,55 @@
     </div>
   </section>
 
+  <!-- New Statistics Section -->
+  <!-- Trusted by Millions Section -->
+<section class="trusted-section">
+  <div class="container">
+    <h2>Trusted by Millions Worldwide</h2>
+    <div class="trusted-grid">
+      <div class="trusted-card">
+        <i class="fas fa-check-circle"></i>
+        <h3>10M+ Verifications</h3>
+        <p>Seamlessly processed verifications worldwide.</p>
+      </div>
+      <div class="trusted-card">
+        <i class="fas fa-clock"></i>
+        <h3>99.9% Uptime</h3>
+        <p>Reliability you can count on, 24/7 service availability.</p>
+      </div>
+      <div class="trusted-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Advanced Security</h3>
+        <p>Industry-leading security features to protect your data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Client Testimonials Section -->
+ <!-- Testimonial Section -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>"VYC made our KYC process seamless and secure. Highly recommended!"</p>
+        <span>- Manav Rai, Founder of WebInOrbit</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"I have used many platforms, but VYC stands out for its speed and accuracy."</p>
+        <span>- Raghav Asija, Punjab Engineering College</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"We have been using VYC for over a year, and it has been a game-changer for us."</p>
+        <span>- Aviral Sharma, Compliance Officer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   <!-- Call to Action -->
   <section class="cta">
     <div class="container">
@@ -90,7 +141,16 @@
 
   <!-- JavaScript -->
   <script src="js/scripts.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+<script src="js/login.js"></script>
+
 </body>
 
 </html>

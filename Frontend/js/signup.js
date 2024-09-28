@@ -73,16 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     password: password,
                     cpassword: cpassword,
-                    profile_image: base64Image // Use the Base64 string here
+                    profile_image: base64Image 
                 };
 
                 try {
                     const response = await fetch('http://127.0.0.1:5000/api/signup', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json', // Set the content type to JSON
+                            'Content-Type': 'application/json', 
                         },
-                        body: JSON.stringify(data), // Convert the object to a JSON string
+                        body: JSON.stringify(data), 
                     });
 
                     const result = await response.json();
