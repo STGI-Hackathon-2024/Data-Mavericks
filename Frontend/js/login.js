@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Utility function to delete a cookie
+    // Utility function to delete a cookie
     function deleteCookie(name) {
-        document.cookie = name + "=; Max-Age=-99999999;";
+        document.cookie = name + "=; Max-Age=-99999999; path=/"; // Include path for deletion
     }
+
 
     // Check if the user is logged in (stored in a cookie)
     const isLoggedIn = getCookie('isLoggedIn');

@@ -115,13 +115,19 @@ def handlesignup():
 
 
         if profile_image:
-            # Get the file extension from the data URL
             file_extension = "jpg"  # Default to jpg
-            filename = f"{secure_filename(name)}.{file_extension}"  # Create a unique filename
+            filename = f"{secure_filename(name)}.{file_extension}"  
             image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            
+            logging.debug(f"Saving image to {image_path}")
+            
             # Decode the image and save it
-            with open(image_path, "wb") as fh:
-                fh.write(base64.b64decode(profile_image))
+            try:
+                with open(image_path, "wb") as fh:
+                    fh.write(base64.b64decode(profile_image))
+            except Exception as e:
+                logging.error(f"Error saving image: {e}")
+                raise
 
         # Hashing the password
         hashed_pass = generate_password_hash(password)
@@ -132,10 +138,16 @@ def handlesignup():
         connection.commit()
 
         # JWT token
-        token = jwt.encode({
-            'user': email,
-            'exp': datetime.utcnow() + JWT_EXPIRATION_TIME
-        }, JWT_SECRET_KEY, algorithm='HS256')
+        try:
+            token = jwt.encode({
+                'user': email,
+                'exp': datetime.utcnow() + JWT_EXPIRATION_TIME
+            }, JWT_SECRET_KEY, algorithm='HS256')
+            
+            logging.debug(f"JWT token generated: {token}")
+        except Exception as e:
+            logging.error(f"Error generating JWT token: {e}")
+            raise
 
         return jsonify({"message": "Your account has been successfully created", "status": "success", "token": token}), 201
 

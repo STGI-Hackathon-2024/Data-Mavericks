@@ -73,20 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: email,
                     password: password,
                     cpassword: cpassword,
-                    profile_image: base64Image 
+                    profile_image: base64Image
                 };
 
                 try {
                     const response = await fetch('http://127.0.0.1:5000/api/signup', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json', 
+                            'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(data), 
+                        body: JSON.stringify(data),
                     });
 
                     const result = await response.json();
-
                     if (response.ok) {
                         alert('Signup successful!');
                         setCookie('isLoggedIn', true, 1);
@@ -94,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         alert(`Error: ${result.message || 'Signup failed!'}`);
                     }
+
                 } catch (error) {
                     console.error('Error:', error);
                     alert('An error occurred. Please try again later.');
