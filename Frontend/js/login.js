@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+
     const navLinks = document.getElementById('navLinks');
 
     // Utility function to set a cookie
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simulate successful login
             setCookie('isLoggedIn', true, 1); // Set cookie for 1 day
             alert('Login successful!');
+            localStorage.setItem('userEmail', email);
             window.location.href = 'dashboard.html'; // Redirect to dashboard
         });
     }

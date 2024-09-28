@@ -1,5 +1,5 @@
 /* js/scripts.js */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   /* Signup Form Handling */
   const signupForm = document.getElementById('signupForm');
   if (signupForm) {

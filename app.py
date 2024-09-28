@@ -15,7 +15,7 @@ import base64
 
 app = Flask(__name__)
 CORS(app)
-UPLOAD_FOLDER = 'static/uploads/profile_images'  
+UPLOAD_FOLDER = 'static/uploads/profile_images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 
@@ -184,28 +184,42 @@ def api_login():
         return jsonify({"message": "Invalid email or password", "status": "danger"}), 401
 
 
-
 @app.route("/api/logout", methods=["POST"])
 def api_logout():
     return jsonify({"message": "Logged out successfully. Please discard your token.", "status": "success"}), 200
 
-# def token_required(f):
-#     @wraps(f)
-#     def decorated(*args, **kwargs):
-#         token = request.headers.get('Authorization')
-#         if not token:
-#             return jsonify({'message': 'Token is missing!', 'status': 'danger'}), 401
-#         try:
-#             data = jwt.decode(token, JWT_SECRET_KEY, algorithms=["HS256"])
-#             current_user = data['user']
-#         except jwt.ExpiredSignatureError:
-#             return jsonify({'message': 'Token has expired!', 'status': 'danger'}), 401
-#         except jwt.InvalidTokenError:
-#             return jsonify({'message': 'Invalid token!', 'status': 'danger'}), 401
+@app.route('/api/user', methods=['POST'])
+def get_user_details():
+    # print(request)
+    print(request.json)
+    email = request.json.get('email')  # Get email from query parameters
+    print(email)
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
 
-#         return f(current_user, *args, **kwargs)
 
-#     return decorated
+    try:
+        # Query to get user details by email
+        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+        user = cursor.fetchone()
+        print("here")
+        print(user)
+        if not user:
+            return jsonify({"message": "User not found"}), 404
+
+        # Assuming the columns in the 'users' table are id, name, email, etc.
+        user_details = {
+            "id": user[0],
+            "name": user[1],
+            "email": user[2],
+            "profile_image": user[3],
+            "timestamp": user[4]
+        }
+        print("here1")
+        return jsonify({"user_details": user_details}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
