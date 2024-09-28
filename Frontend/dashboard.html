@@ -35,6 +35,7 @@
   <section class="dashboard">
     <div class="container">
       <h2>Welcome, [User Name]</h2>
+      
       <div class="dashboard-grid">
         <!-- Step 1: Capture Live Image -->
         <div class="dashboard-card">
@@ -43,23 +44,30 @@
           <button id="captureButton" class="btn btn-primary">Capture Image</button>
           <canvas id="capturedCanvas"></canvas>
         </div>
-        <!-- Step 2: Upload Documents -->
+  
+        <!-- Step 2: Select and Upload Documents -->
         <div class="dashboard-card">
           <h3><i class="fas fa-upload"></i> Upload Documents</h3>
           <form id="uploadForm">
             <div class="form-group">
-              <label for="idDocument"><i class="fas fa-id-card"></i> Upload ID Document</label>
-              <input type="file" id="idDocument" name="idDocument" accept="image/*" required>
+              <label for="documentType"><i class="fas fa-id-card"></i> Select Document Type</label>
+              <select id="documentType" name="documentType" required>
+                <option value="">Choose a document</option>
+                <option value="driving_license">Driving License</option>
+                <option value="aadhar_card">Aadhar Card</option>
+                <option value="pan_card">PAN Card</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="secondImage"><i class="fas fa-image"></i> Upload Second Image</label>
-              <input type="file" id="secondImage" name="secondImage" accept="image/*" required>
+              <label for="idDocument"><i class="fas fa-id-card"></i> Upload Selected ID Document</label>
+              <input type="file" id="idDocument" name="idDocument" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-secondary">Upload Images</button>
+            
+            <button type="submit" class="btn btn-secondary">Upload Documents</button>
           </form>
         </div>
       </div>
-
+  
       <!-- Verification Results -->
       <div class="verification-results">
         <h3>Verification Results</h3>
@@ -69,6 +77,7 @@
       </div>
     </div>
   </section>
+  
 
   <!-- Footer -->
   <footer class="footer">
@@ -84,7 +93,7 @@
 
   <!-- JavaScript -->
   <script src="js/scripts.js"></script>
-  <script src="js/livemodel.js"></script>
+
   <script src="js/login.js"></script>
 </body>
 

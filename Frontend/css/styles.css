@@ -638,6 +638,17 @@ body {
   transition: all 0.3s ease;
 }
 
+.dashboard-card .btn-secondary{
+  padding: 0.75rem 2rem; /* Same padding as the hero section buttons */
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: #1e3c72; /* Primary button background color */
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
 .signup .btn-primary:hover {
   background-color: #ffdd57; /* Hover effect */
   color: #1e3c72;
@@ -694,9 +705,10 @@ body {
 }
 
 /* Dashboard Section */
+/* Dashboard Section */
 .dashboard {
-  padding: 4rem 0;
-  background-color: #f4f6f9;
+  padding: 2rem 0;
+  background-color: #f5f5f5;
 }
 
 .dashboard h2 {
@@ -704,77 +716,71 @@ body {
   margin-bottom: 2rem;
   font-size: 2rem;
   color: #1e3c72;
-  position: relative;
-}
-
-.dashboard h2::after {
-  content: '';
-  width: 50px;
-  height: 3px;
-  background-color: #ffdd57;
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transform: translateX(-50%);
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
 }
 
+/* Dashboard Cards */
 .dashboard-card {
   background-color: #fff;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dashboard-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .dashboard-card h3 {
   margin-bottom: 1rem;
+  font-size: 1.5rem;
   color: #1e3c72;
 }
 
 .dashboard-card i {
-  color: #ffdd57;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  color: #1e3c72;
 }
 
-#liveVideo, #capturedCanvas {
+/* Video for live capture */
+video {
   width: 100%;
-  border: 2px solid #1e3c72;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
 }
 
-#capturedCanvas {
-  display: none;
-}
-
-.results-box {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-  min-height: 150px;
-  transition: all 0.3s ease;
-}
-
-.results-box p {
-  color: #555;
+/* Capture Button */
+#captureButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #1e3c72;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+#captureButton:hover {
+  background-color: #3a579a;
+}
+
+/* Canvas for displaying captured image */
+#capturedCanvas {
+  display: none; /* Hide canvas by default */
+  width: 100%;
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+
 
 /* Footer */
 .footer {
