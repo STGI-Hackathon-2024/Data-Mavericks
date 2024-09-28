@@ -304,7 +304,7 @@ body {
 
 /* CTA Section */
 .cta {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: linear-gradient(135deg, #1e3c72, #0e131b);
   color: #fff;
   text-align: center;
   padding: 3rem 0;
@@ -988,6 +988,169 @@ form {
   font-size: 1rem;
   color: #555;
 }
+/* Developer Section Styles */
+.developer-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #050a12, #1e4994);
+  color: #fff;
+  text-align: center;
+}
+
+.developer-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffdd57;
+}
+
+.developer-section p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #f0f0f0;
+}
+
+.developer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.developer-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  text-align: center;
+  transform: translateY(0);
+}
+
+.developer-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.developer-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.developer-card:hover .developer-photo {
+  transform: scale(1.1);
+}
+
+.developer-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.developer-card p {
+  font-size: 1rem;
+  color: #777;
+}
+
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  color: #2a5298;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+  color: #ffdd57;
+}
+
+/* Animations for Developer Section */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.developer-section .developer-card {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .developer-card {
+    padding: 1.5rem;
+  }
+
+  .developer-photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+.developer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible grid for responsiveness */
+  grid-template-rows: auto; /* Ensures automatic row sizing */
+  gap: 20px; /* Adds space between the cards */
+  justify-items: center; /* Centers the items horizontally */
+}
+
+.developer-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px; /* Adjust width as necessary */
+}
+
+.developer-card img {
+  width: 100px; /* Adjust size as necessary */
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.developer-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons a {
+  color: #1e3c72;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ffdd57;
+}
+
+/* For larger screens, ensure layout is 3 on top, 2 on bottom */
+@media (min-width: 768px) {
+  .developer-grid {
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-template-rows: repeat(2, auto); /* Two rows */
+  }
+
+  /* Targeting last row to ensure proper alignment */
+  .developer-grid .developer-card:nth-child(4),
+  .developer-grid .developer-card:nth-child(5) {
+    grid-column: span 1; /* Spread the cards evenly on the bottom row */
+  }
+}
+
+
+
 
 
 .testimonials {

@@ -52,21 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const cpassword = document.getElementById('cpassword').value;
-            const profile_image = document.getElementById('profile_image').files[0];
+            // Ensure all form elements exist before accessing them
+            const name = document.getElementById('name')?.value || null;
+            const email = document.getElementById('email')?.value || null;
+            const password = document.getElementById('password')?.value || null;
+            const cpassword = document.getElementById('cpassword')?.value || null;
+            const profile_image = document.getElementById('profile_image')?.files[0] || null;
+
+            if (!name || !email || !password || !cpassword || !profile_image) {
+                alert('Please fill in all required fields.');
+                return;
+            }
 
             if (password !== cpassword) {
                 alert('Passwords do not match!');
                 return;
             }
 
-            // Convert the image file to a Base64 string
             const reader = new FileReader();
             reader.onloadend = async () => {
-                const base64Image = reader.result.split(',')[1]; // Get Base64 part of the string
+                const base64Image = reader.result.split(',')[1]; 
 
                 const data = {
                     name: name,
