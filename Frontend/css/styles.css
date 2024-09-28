@@ -302,32 +302,174 @@ body {
   color: #555;
 }
 
-/* Call to Action */
+/* CTA Section */
 .cta {
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: #fff;
-  padding: 4rem 0;
   text-align: center;
-  animation: fadeIn 2s ease-in-out;
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  animation: rotateBackground 10s linear infinite;
 }
 
 
-.cta h2 {
+.cta-heading {
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease;
 }
 
-.cta .btn {
+.cta-subtext {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.cta-btn {
+  display: inline-block;
   padding: 0.75rem 2rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #ffdd57;
+  border: none;
   border-radius: 50px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
-.cta .btn:hover {
-  background-color: #ffdd57;
-  color: #1e3c72;
+.cta-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.cta-btn:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+/* Glowing Button */
+.glow-btn {
+  display: inline-block;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #ffdd57;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 221, 87, 0.8);
+}
+
+/* Hover Effect with Glow */
+.glow-btn:hover {
+  background-color: #ffcc33;
+  box-shadow: 0 0 30px rgba(255, 221, 87, 1), 0 0 60px rgba(255, 221, 87, 0.6);
+  transform: scale(1.05);
+}
+
+/* Glow Pulse Animation */
+@keyframes glowPulse {
+  0% {
+      box-shadow: 0 0 10px rgba(255, 221, 87, 0.7), 0 0 30px rgba(255, 221, 87, 0.4);
+  }
+  50% {
+      box-shadow: 0 0 20px rgba(255, 221, 87, 1), 0 0 50px rgba(255, 221, 87, 0.8);
+  }
+  100% {
+      box-shadow: 0 0 10px rgba(255, 221, 87, 0.7), 0 0 30px rgba(255, 221, 87, 0.4);
+  }
+}
+
+.glow-btn {
+  animation: glowPulse 2s infinite;
+}
+
+.glow-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+/* Glow Effect on Hover */
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 221, 87, 0.4);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0;
+}
+
+.glow-btn:hover::before {
+  width: 300%;
+  height: 300%;
+  top: -75%;
+  left: -75%;
+  opacity: 1;
+}
+
+/* Button Hover Animation */
+.glow-btn:hover i {
+  animation: bounceIcon 0.6s ease infinite;
+}
+
+/* Bounce Effect for the Icon on Hover */
+@keyframes bounceIcon {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-5px);
+  }
+}
+
+
+/* Button Animation */
+.cta-btn:hover i {
+  animation: bounce 0.6s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-5px);
+  }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 /* Signup & Login Sections */
