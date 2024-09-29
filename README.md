@@ -33,6 +33,58 @@ Here are some of the advanced features that make **VYC** a comprehensive KYC pla
 
 ![Our Features](https://github.com/coderiders22/Data-Mavericks/blob/c78c02e125f0bc3f505d95b2939adb7ed0a5427f/features.png)
 
+## Login and Signup Pages
+
+### **Signup Page**
+New users can create an account by providing basic information such as their full name, email address, password, and uploading a profile photo. The signup page includes real-time validation to ensure the correctness of data.
+
+- **Signup Features**:
+  - Input fields for full name, email, password, and confirmation.
+  - Real-time validation to prevent errors.
+  - Secure password storage with encryption.
+
+![Signup Page](insert_signup_image_link)
+
+### **Login Page**
+The login page provides a simple and secure interface for users to access their accounts. Users must input their registered email and password to log in to the platform.
+
+- **Login Features**:
+  - Simple, user-friendly design.
+  - Error handling for incorrect logins.
+  - Password reset option.
+
+![Login Page](your_image_link_here)
+
+## Dashboard
+
+### **Dashboard Overview**
+After logging in, users are directed to the dashboard where they can initiate or continue the KYC verification process. The dashboard also provides quick access to user account information, recent activity, and verification status.
+
+![Dashboard Page](insert_dashboard_image_link_here)
+
+## Developer Team
+
+### Meet Our Developers
+Our dedicated team is responsible for building and enhancing the VYC Verification Platform.
+
+- **Manav Rai**: Frontend Developer & Model Integration
+- **Aryan**: Backend Developer
+- **Raghav Asija**: Live Image Capture and Liveness Detection
+- **Aviral Sharma**: Image Verification & Database Comparison
+- **Chetanya Mahana**: Image Verification & Database Comparison
+
+![Developer Team](insert_developer_team_image_link_here)
+
+## Document Upload and Capture Image
+
+### **Capture Live Image**
+Users can capture a live image using their device camera, ensuring they are present during the verification process. This feature ensures real-time verification and helps in detecting spoofing attempts.
+
+### **Document Upload**
+Users can upload their ID document (e.g., Passport, Driving License) for facial verification. Additionally, they can upload a second image for database comparison.
+
+![Capture and Upload Documents](insert_capture_upload_image_link_here)
+
 ## Workflow Overview
 
 1. **Capture Live Image**: The platform takes a live picture of the user to ensure they are physically present during the verification process.
@@ -63,9 +115,8 @@ In conclusion, **VYC** offers a secure, scalable, and efficient solution for KYC
 
 ---
 
-### How to Use This Template
+### How to Use Verify Your Customer
 
-- Replace `insert_your_image_link_here` with the actual Google Drive or file links of the images you've uploaded.
-- Replace `insert_ppt_link_here` and `insert_video_link_here` with the respective links to your presentation and demo video on Google Drive.
 
-This is a complete README file structure with all relevant placeholders for your project. Let me know if you need further customizations or assistance in uploading the images!
+
+This README now includes all the relevant pages, including Signup, Dashboard, Developer Team, and Document Upload/Capture Image.
