@@ -110,6 +110,14 @@ Users can upload their ID document (e.g., Passport, Driving License) for facial 
 - **Liveness Detection**: OpenCV, Dlib, TensorFlow
 - **Storage**: Amazon S3, Google Cloud Storage
 
+## Backend Setup
+backend/
+├── app.py               # Flask application file
+├── requirements.txt     # Python dependencies file
+└── uploads/             # Folder for storing uploaded images (optional)
+run python app.py
+
+
 ## Conclusion
 In conclusion, **VYC** offers a secure, scalable, and efficient solution for KYC verification. It is equipped with advanced features for facial recognition, liveness detection, and AI-generated image detection, ensuring user authenticity and privacy.
 
