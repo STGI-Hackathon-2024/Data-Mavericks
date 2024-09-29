@@ -26,7 +26,7 @@
 ### Welcome Screen
 The platform offers a welcoming and user-friendly interface. Users can sign up, log in, and initiate their identity verification journey through intuitive navigation.
 
-![Welcome to KYC Verification Platform](insert_your_image_link_here)
+![Welcome to KYC Verification Platform](https://github.com/coderiders22/Data-Mavericks/blob/e65495a5a8957769406cf5b265e466e4c52056a4/home.png)
 
 ### Feature Highlights
 Here are some of the advanced features that make **VYC** a comprehensive KYC platform:
