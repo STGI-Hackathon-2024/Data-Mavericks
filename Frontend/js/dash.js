@@ -89,32 +89,24 @@ setName(emailToSend);
                 return;
             }
 
-            const formDataID = new FormData();
-            formDataID.append('documentType', documentType);
-            formDataID.append('idDocument', idDocument);
-
-            const formDataSecondImage = new FormData();
-            formDataSecondImage.append('secondImage', secondImage);
+            const formData = new FormData();
+            formData.append('documentType', documentType);
+            formData.append('idDocument', idDocument);
+            formData.append('secondImage', secondImage);
 
             try {
-                // Call the API for the ID Document upload
-                const idDocumentResponse = await fetch('http://127.0.0.1:5000/api/upload_id_document', {
+                // Call the API for both document uploads
+                const response = await fetch('http://127.0.0.1:5000/api/upload_documents', {
                     method: 'POST',
-                    body: formDataID,
+                    body: formData,
                 });
 
-                const secondImageResponse = await fetch('http://127.0.0.1:5000/api/upload_second_image', {
-                    method: 'POST',
-                    body: formDataSecondImage,
-                });
+                const result = await response.json();
 
-                const idDocumentResult = await idDocumentResponse.json();
-                const secondImageResult = await secondImageResponse.json();
-
-                if (idDocumentResponse.ok && secondImageResponse.ok) {
-                    alert('Both documents uploaded successfully!');
+                if (response.ok) {
+                    alert('Documents uploaded successfully!');
                 } else {
-                    alert(`Error: ${idDocumentResult.message || secondImageResult.message || 'Upload failed!'}`);
+                    alert(`Error: ${result.message || 'Upload failed!'}`);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -123,6 +115,3 @@ setName(emailToSend);
         });
     }
 });
-
-
- 
