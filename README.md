@@ -104,7 +104,7 @@ Users can upload their ID document (e.g., Passport, Driving License) for facial 
 ## Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python (Flask/FastAPI)
+- **Backend**: Python (Flask/FastAPI, Streamlit)
 - **Vector Database**: Pinecone for similarity search
 - **Facial Recognition**: DeepFace, FaceNet, VGGFace
 - **Liveness Detection**: OpenCV, Dlib, TensorFlow
