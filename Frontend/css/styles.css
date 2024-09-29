@@ -1154,6 +1154,53 @@ form {
     grid-column: span 1; /* Spread the cards evenly on the bottom row */
   }
 }
+.verification-results {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #f4f6f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.verification-results h3 {
+  font-size: 24px;
+  color: #1e3c72;
+  margin-bottom: 20px;
+}
+
+.results-box {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.results-box p {
+  font-size: 18px;
+  color: #555;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.loader {
+  margin: 20px auto;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #1e3c72;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 
 
