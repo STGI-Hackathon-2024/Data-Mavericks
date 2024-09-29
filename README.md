@@ -98,7 +98,7 @@ Users can upload their ID document (e.g., Passport, Driving License) for facial 
 
 ## Project Links
 
-- **Presentation**: [Google Drive PPT](https://www.canva.com/design/DAGSGaAgzSs/0s_d8Uuawz2QKxEsNWhjVQ/edit?utm_content=DAGSGaAgzSs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- **Presentation**: [PPT](https://www.canva.com/design/DAGSGaAgzSs/0s_d8Uuawz2QKxEsNWhjVQ/edit?utm_content=DAGSGaAgzSs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 - **Video Demo**: [Google Drive Video](insert_video_link_here)
 
 ## Tech Stack
