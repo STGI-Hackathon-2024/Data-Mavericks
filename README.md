@@ -31,7 +31,7 @@ The platform offers a welcoming and user-friendly interface. Users can sign up, 
 ### Feature Highlights
 Here are some of the advanced features that make **VYC** a comprehensive KYC platform:
 
-![Our Features](insert_your_image_link_here)
+![Our Features](https://github.com/coderiders22/Data-Mavericks/blob/c78c02e125f0bc3f505d95b2939adb7ed0a5427f/features.png)
 
 ## Workflow Overview
 
